@@ -257,9 +257,7 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public int getCurrentAgeByDate(int indexOfStudent) {
-		if(indexOfStudent == 0){
-			throw new IllegalArgumentException("Null");
-		}
+		
 		Date now = new Date();
            return this.students[indexOfStudent].getBirthDate().getYear() - now.getYear();
 	}
