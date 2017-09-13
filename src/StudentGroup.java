@@ -67,6 +67,9 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public void addFirst(Student student) {
+		if(students == null){
+			throw new IllegalArgumentException("Null");
+		}
          ArrayList<Student> al=new ArrayList<Student>();
 		al.add(student);
 		for(i=0;i<students.length;i++)
@@ -78,6 +81,9 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public void addLast(Student student) {
+		if(students == null){
+			throw new IllegalArgumentException("Null");
+		}
 		// Add your implementation here
 		List<Student> al=new ArrayList<Student>();
 		for(Student s:this.students){al.add(s);}
@@ -106,6 +112,10 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public void remove(int index) {
 		// Add your implementation here
+		if(index<0||index>=students.length)
+		{
+			throw new IllegalArgumentException("Null");
+		}
 		List<Student> al=new ArrayList<Student>();
 		for(i=0;i<index;i++)
 		{
@@ -118,6 +128,8 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public void remove(Student student) {
 		// Add your implementation here
+		
+		if(student==null){throw new IllegalArgumentException("student not exist");}
 		 Student[] temp = new Student[this.students.length-1]; 
 		 int c = 0;
 		 for(int i = 0; i < this.students.length; i++)
@@ -128,6 +140,10 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public void removeFromIndex(int index) {
 		// Add your implementation here
+		if(index<0||index>=students.length)
+		{
+			throw new IllegalArgumentException("Null");
+		}
 		 		List<Student> al=new ArrayList<Student>();
 		for(i=0;i<index;i++)
 		{
@@ -139,6 +155,9 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public void removeFromElement(Student student) {
 		// Add your implementation here
+		if(students == null){
+			throw new IllegalArgumentException("Null");
+		}
 		      int ind = getStudentIndex(student);
 		   ArrayList<Student> temp = new ArrayList<>();
 		   for(int i = 0; i < ind; i++)
@@ -149,6 +168,10 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public void removeToIndex(int index) {
 		// Add your implementation here
+		if(index<0||index>=students.length)
+		{
+			throw new IllegalArgumentException("Null");
+		}
 		  Student[] temp = new Student[this.students.length-index]; 
 		 int c = 0;
 		 for(int i = index; i < this.students.length; i++)
@@ -159,6 +182,9 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public void removeToElement(Student student) {
 		// Add your implementation here
+		if(students == null){
+			throw new IllegalArgumentException("Null");
+		}
 		    int ind = getStudentIndex(student);
 		   ArrayList<Student> temp = new ArrayList<>();
 		   for(int i = ind; i < this.students.length; i++)
@@ -186,6 +212,9 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public Student[] getByBirthDate(Date date) {
+		if(date == null){
+			throw new IllegalArgumentException("Null");
+		}
 		 ArrayList<Student> temp = new ArrayList<>();
 		   for(Student s : this.students)
 		   {
