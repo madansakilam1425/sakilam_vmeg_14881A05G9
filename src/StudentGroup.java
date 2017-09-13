@@ -32,6 +32,9 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public Student[] getStudents() {
+		if(students == null){
+			throw new IllegalArgumentException("Null");
+		}
          return this.students;
 	}
 
