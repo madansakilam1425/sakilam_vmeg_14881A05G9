@@ -21,13 +21,13 @@ import java.util.stream.Collectors;
 public class StudentGroup implements StudentArrayOperation {
 
 	private Student[] students;
-	
+	int i,j;
 	/**
 	 * DO NOT remove or change this constructor, it will be used during task check
 	 * @param length
 	 */
 	public StudentGroup(int length) {
-        students = new Student[0];
+        this.students = new Student[length];
 	}
 
 	@Override
@@ -52,43 +52,45 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public void addFirst(Student student) {
-         Student[] temp = new Student[this.students.length+1];
-		 temp[0] = student;
-		 for(int i = 1; i < temp.length; i++)
-			 temp[i] = this.students[i-1];
-		 this.students = temp;
+         ArrayList<Student> al=new ArrayList<Student>();
+		al.add(student);
+		for(i=0;i<students.length;i++)
+		{
+			al.add(students[i]);
+		}
+		students=al.toArray(new Student[al.size()]);
 	}
 
 	@Override
 	public void addLast(Student student) {
 		// Add your implementation here
-		  Student[] temp = new Student[this.getStudents().length+1];
-		 for(int i = 0; i < this.students.length; i++)
-			 temp[i] = this.students[i];
-		 temp[temp.length - 1] = student;
-		 this.students = temp;
+		List<Student> al=new ArrayList<Student>();
+		for(Student s:this.students){al.add(s);}
+		al.add(student);
+		students=al.toArray(new Student[al.size()]);
 	}
 
 	@Override
 	public void add(Student student, int index) {
-	Student[] temp = new Student[this.students.length+1];
-		 for(int i = 0; i < index; i++)
-			 temp[i] = this.students[i];
-		 temp[index] = student;
-		 for(int i = index; i < this.students.length; i++)
-			 temp[i+1] = this.students[i];
-		 this.students = temp;
+		List<Student> al=new ArrayList<Student>();
+		for(int i=0;i<index;i++){al.add(getStudent(i));}
+		al.add(student);
+		for(int i=index;i<this.students.length;i++)
+		{al.add(getStudent(i));}
+		this.students=al.toArray(new Student[al.size()]);
 		
 	}
 
 	@Override
 	public void remove(int index) {
 		// Add your implementation here
-		Student[] temp = new Student[this.students.length-1]; 
-		 int c = 0;
-		 for(int i = 0; i < this.students.length; i++)
-			 if(i != index) temp[c++] = this.students[i];
-		 this.students = temp;
+		List<Student> al=new ArrayList<Student>();
+		for(i=0;i<index;i++)
+		{
+			al.add(getStudent(i));
+		}
+		for(i=index+1;i<this.students.length;i++){al.add(getStudent(i));}
+		this.students=al.toArray(new Student[al.size()]);
 	}
 
 	@Override
@@ -104,11 +106,12 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public void removeFromIndex(int index) {
 		// Add your implementation here
-		 Student[] temp = new Student[index]; 
-		 int c = 0;
-		 for(int i = 0; i < index; i++)
-			 temp[i] = this.students[i];
-		 this.students = temp; 
+		 		List<Student> al=new ArrayList<Student>();
+		for(i=0;i<index;i++)
+		{
+			al.add(getStudent(i));
+		}
+		students=al.toArray(new Student[al.size()]);
 	}
 
 	@Override
@@ -144,19 +147,19 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public void bubbleSort() {
 		// Add your implementation here
-		 for(int i = 0; i < this.students.length; i++)
-		  {
-			  
-	          for(int j = 0; j < this.students.length-i-1; j++)
-			  {
-                   if(this.students[j].getId() > this.students[j+1].getId())
-				   {
-					   Student temp = this.students[j];
-					   this.students[j] = this.students[j+1];
-					   this.students[j+1] = temp;
-				   }
-			  }	   
-		  }
+		Student temp;
+		List<Student> al=new ArrayList<Student>();
+		for(i=0;i<this.students.length;i++)
+		{
+			for(j=0;j<this.students.length;j++)
+			{
+				if(this.students[j].getId()>this.students[j+1].getId()){
+					temp=this.students[j];
+					this.students[j]=this.students[j+1];
+					this.students[j+1]=temp;
+				}
+			}
+		}
 	}
 
 	@Override
