@@ -40,16 +40,28 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public void setStudents(Student[] students) {
+		
          this.students = students;
 	}
 
 	@Override
 	public Student getStudent(int index) {
+		if(index<0||index>=students.length)
+		{
+			throw new IllegalArgumentException("Null");
+		}
           return students[index];
 	}
 
 	@Override
 	public void setStudent(Student student, int index) {
+		if(students == null){
+			throw new IllegalArgumentException("Null");
+		}
+		if(index<0||index>=students.length)
+		{
+			throw new IllegalArgumentException("Null");
+		}
            this.getStudents()[index] = student;
 	}
 
