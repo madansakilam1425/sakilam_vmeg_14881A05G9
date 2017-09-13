@@ -87,6 +87,13 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public void add(Student student, int index) {
+		if(students == null){
+			throw new IllegalArgumentException("Null");
+		}
+		if(index<0||index>=students.length)
+		{
+			throw new IllegalArgumentException("Null");
+		}
 		List<Student> al=new ArrayList<Student>();
 		for(int i=0;i<index;i++){al.add(getStudent(i));}
 		al.add(student);
